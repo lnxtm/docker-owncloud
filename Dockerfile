@@ -65,7 +65,7 @@ RUN apt-get -y install --no-install-recommends libreoffice
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh && chmod +x /le.sh && \
 	mkdir /etc/nginx/ssl
-ADD pupu.sh /pupu.sh
-RUN chmod +x /pupu.sh && apt-get clean
+ADD commit.sh /commit.sh
+RUN chmod +x /commit.sh && apt-get clean
 ###########################################################################
 CMD ["/entrypoint.sh"]
