@@ -64,7 +64,9 @@ setup_nginx_le () {
  			sleep 60d
  		else
  			if [ ! -f /etc/nginx/sites-enabled/http ]; then
-	 			mv /http /etc/nginx/sites-enabled/http
+	 			if [ ! -f /etc/nginx/sites-enabled/http ]; then
+	 				mv /http /etc/nginx/sites-enabled/http
+	 			fi
 	 		fi
  			mv /etc/nginx/sites-enabled/https /https 
 			nginx -s reload
@@ -84,5 +86,5 @@ else
 	setup_code
 	setup_nginx_le
 fi
-export GIT_PASS=erased
+unset GIT_PASS
 /usr/bin/supervisord

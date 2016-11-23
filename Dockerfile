@@ -39,7 +39,7 @@ RUN apt-get install -y nginx && \
 	echo "autostart = true" >> /etc/supervisor/conf.d/supervisord.conf && \
 	rm -rf /etc/nginx/sites-enabled/* && mkdir -p /usr/share/nginx/html
 ADD nginx.conf /etc/nginx/
-ADD http /etc/nginx/sites-enabled/http
+ADD http /http
 ADD https /https
 
 # php
