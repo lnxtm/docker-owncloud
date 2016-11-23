@@ -1,4 +1,4 @@
-htupstream php-handler {
+upstream php-handler {
     server unix:/var/run/cloud.sock;
   }
 
