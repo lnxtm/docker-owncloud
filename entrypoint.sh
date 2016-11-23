@@ -7,6 +7,7 @@ sed -i "s|PHP_MEMORY|${PHP_MEMORY}|g" /etc/php/7.0/fpm/pool.d/cloud.conf
 sed -i "s|PHP_PM_MAX|${PHP_PM_MAX}|g" /etc/php/7.0/fpm/pool.d/cloud.conf
 sed -i "s|PHP_PM_START|${PHP_PM_START}|g" /etc/php/7.0/fpm/pool.d/cloud.conf
 sed -i "s|PHP_PM_SPARE_MIN|${PHP_PM_SPARE_MIN}|g" /etc/php/7.0/fpm/pool.d/cloud.conf
+sed -i "s|PHP_PM_SPARE_MAX|${PHP_PM_SPARE_MAX}|g" /etc/php/7.0/fpm/pool.d/cloud.conf
 sed -i "s|PHP_DISPLAY_ERROR|${PHP_DISPLAY_ERROR}|g" /etc/php/7.0/fpm/pool.d/cloud.conf
 sed -i "s|PHP_SHORT_OPEN_TAG|${PHP_SHORT_OPEN_TAG}|g" /etc/php/7.0/fpm/php.ini
 # setup nginx
