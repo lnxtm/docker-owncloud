@@ -54,7 +54,7 @@ RUN apt-get install -y php7.0-fpm php7.0-common php7.0-cli php-apcu \
 	echo "autostart = true" >> /etc/supervisor/conf.d/supervisord.conf && \
 	rm -rf /etc/php
 ADD php /etc/php
-
+RUN mkdir -p /run/php/
 # mysql support
 RUN apt-get install -y mysql-client libmysqlclient-dev
 # samba shares support
