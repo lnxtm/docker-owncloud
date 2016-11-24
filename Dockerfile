@@ -43,6 +43,7 @@ ADD http /http
 ADD https /https
 
 # php
+RUN mkdir -p /run/php/
 RUN apt-get install -y php7.0-fpm php7.0-common php7.0-cli php-apcu \
 	php-redis php-mbstring php7.0-mysql php7.0-curl php7.0-gd php7.0-intl \
 	php-pear imagemagick php7.0-imagick php-imagick php7.0-imap php7.0-mcrypt \
@@ -52,11 +53,11 @@ RUN apt-get install -y php7.0-fpm php7.0-common php7.0-cli php-apcu \
 	echo "[program:php-fpm7.0]" >> /etc/supervisor/conf.d/supervisord.conf && \
 	echo "command = /usr/sbin/php-fpm7.0" >> /etc/supervisor/conf.d/supervisord.conf && \
 	echo "autostart = true" >> /etc/supervisor/conf.d/supervisord.conf && \
-	rm -rf /etc/php/7.0/fpm/php.ini && rm -rf /etc/7.0/fpm/pool.d/* && rm -rf /etc/php/7.0/fpm/pool.d/php-fpm.conf
+	rm -rf /etc/php/7.0/fpm/php.ini && rm -rf /etc/7.0/fpm/pool.d/*
 ADD php.ini /etc/php/fpm/php.ini
 ADD cloud.conf /etc/php/7.0/fpm/pool.d/cloud.conf
-ADD php-fpm.conf /etc/php/7.0/fpm/pool.d/php-fpm.conf
-RUN mkdir -p /run/php/
+RUN sed -i "s|;daemonize = yes|daemonize = no|g" /etc/php/7.0/fpm/php-fpm.conf
+
 # mysql support
 RUN apt-get install -y mysql-client libmysqlclient-dev
 # samba shares support
