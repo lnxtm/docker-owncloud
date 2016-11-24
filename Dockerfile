@@ -53,8 +53,8 @@ RUN apt-get install -y php7.0-fpm php7.0-common php7.0-cli php-apcu \
 	echo "[program:php-fpm7.0]" >> /etc/supervisor/conf.d/supervisord.conf && \
 	echo "command = /usr/sbin/php-fpm7.0" >> /etc/supervisor/conf.d/supervisord.conf && \
 	echo "autostart = true" >> /etc/supervisor/conf.d/supervisord.conf && \
-	rm -rf /etc/php/7.0/fpm/php.ini && rm -rf /etc/7.0/fpm/pool.d/*
-ADD php.ini /etc/php/fpm/php.ini
+	rm -rf /etc/php/7.0/fpm/php.ini && rm -rf /etc/php/7.0/fpm/pool.d/*
+ADD php.ini /etc/php/7.0/fpm/php.ini
 ADD cloud.conf /etc/php/7.0/fpm/pool.d/cloud.conf
 RUN sed -i "s|;daemonize = yes|daemonize = no|g" /etc/php/7.0/fpm/php-fpm.conf
 
