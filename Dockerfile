@@ -52,8 +52,10 @@ RUN apt-get install -y php7.0-fpm php7.0-common php7.0-cli php-apcu \
 	echo "[program:php-fpm7.0]" >> /etc/supervisor/conf.d/supervisord.conf && \
 	echo "command = /usr/sbin/php-fpm7.0" >> /etc/supervisor/conf.d/supervisord.conf && \
 	echo "autostart = true" >> /etc/supervisor/conf.d/supervisord.conf && \
-	rm -rf /etc/php
-ADD php /etc/php
+	rm -rf /etc/php/7.0/fpm/php.ini && rm -rf /etc/7.0/fpm/pool.d/*
+ADD php.ini /etc/php/fpm/php.ini
+ADD cloud.conf /etc/php/7.0/fpm/pool.d/cloud.conf
+RUN sed -i "s|daemonize = yes|daemonize = no|g" /etc/php/7.0/fpm/php-fpm.conf
 RUN mkdir -p /run/php/
 # mysql support
 RUN apt-get install -y mysql-client libmysqlclient-dev
@@ -66,6 +68,6 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh && chmod +x /le.sh && \
 	mkdir /etc/nginx/ssl
 ADD commit.sh /commit.sh
-RUN chmod +x /commit.sh && apt-get clean
+RUN chmod +x /commit.sh && apt-get clean 
 ###########################################################################
 CMD ["/entrypoint.sh"]
